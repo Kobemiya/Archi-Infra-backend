@@ -5,10 +5,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["InfraArchi/InfraArchi.csproj", "InfraArchi/"]
+COPY ["./InfraArchi.csproj", "InfraArchi/"]
 RUN dotnet restore "InfraArchi/InfraArchi.csproj"
-COPY . .
+
 WORKDIR "/src/InfraArchi"
+COPY . .
+
 RUN dotnet build "InfraArchi.csproj" -c Release -o /app/build
 
 FROM build AS publish

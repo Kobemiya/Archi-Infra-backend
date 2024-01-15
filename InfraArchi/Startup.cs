@@ -11,6 +11,7 @@ public static class Startup
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
     }
 
     public static void ConfigureApp(WebApplication app)
