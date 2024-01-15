@@ -11,6 +11,7 @@ public static class Startup
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddHealthChecks();
     }
 
     public static void ConfigureApp(WebApplication app)
@@ -23,5 +24,6 @@ public static class Startup
         app.UseSwaggerUI();
 
         app.MapControllers();
+        app.MapHealthChecks("/healthz");
     }
 }
