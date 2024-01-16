@@ -12,6 +12,7 @@ public static class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddHealthChecks();
+        services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
     }
 
     public static void ConfigureApp(WebApplication app)
@@ -25,6 +26,8 @@ public static class Startup
 
         app.MapControllers();
         app.MapHealthChecks("/healthz");
+
+        app.UseCors();
         
         using var context = app.Services.CreateScope().ServiceProvider.GetService<TodoDbContext>();
         context?.Database.EnsureCreated();
