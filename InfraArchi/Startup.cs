@@ -12,7 +12,7 @@ public static class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddHealthChecks();
-        services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
+        services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
     }
 
     public static void ConfigureApp(WebApplication app)
