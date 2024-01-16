@@ -25,5 +25,8 @@ public static class Startup
 
         app.MapControllers();
         app.MapHealthChecks("/healthz");
+        
+        using var context = app.Services.CreateScope().ServiceProvider.GetService<TodoDbContext>();
+        context?.Database.EnsureCreated();
     }
 }
